@@ -1,0 +1,9 @@
+{
+  "name": "HemaScan - Needle-free anaemia screening",
+  "short_name": "HemaScan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf7f8",
+  "theme_color": "#b91c3c",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
