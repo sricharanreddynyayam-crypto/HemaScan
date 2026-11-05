@@ -246,8 +246,14 @@ function renderResult(d) {
   const hero = $("#result-hero");
   hero.className = `card result-hero ${d.quality.ok ? d.risk : ""}`;
   $("#risk-badge").textContent = d.quality.ok ? RISK_LABEL[d.risk] : "Retake photo";
-  $("#hb-value").textContent = d.hb_estimate.toFixed(1);
-  $("#hb-range").textContent = `Likely range ${d.hb_range[0]}–${d.hb_range[1]} g/dL · anaemia below ${d.thresholds.normal} for ${GROUP_LABEL[state.group]}`;
+  const ok = d.quality.ok;
+  // A rejected photo gets no number: an estimate from a bad photo would mislead.
+  $("#hb-value").textContent = ok ? d.hb_estimate.toFixed(1) : "—";
+  $("#hb-range").textContent = ok
+    ? `Likely range ${d.hb_range[0]}–${d.hb_range[1]} g/dL · anaemia below ${d.thresholds.normal} for ${GROUP_LABEL[state.group]}`
+    : "No estimate: please retake the photo using the tips below";
+  $(".gauge").classList.toggle("hidden", !ok);
+  $(".result-grid").classList.toggle("hidden", !ok);
   const pos = Math.min(100, Math.max(0, ((d.hb_estimate - 6) / 12) * 100));
   const t = d.thresholds; // colour bands follow this group's WHO cut-offs
   $(".g-severe").style.flex = t.moderate - 6;
@@ -257,6 +263,7 @@ function renderResult(d) {
   $("#gauge-marker").style.left = "0%";
   requestAnimationFrame(() => setTimeout(() => ($("#gauge-marker").style.left = pos + "%"), 50));
   $("#confidence-pill").textContent = `Confidence: ${d.confidence}`;
+  $("#confidence-pill").classList.toggle("hidden", !ok);
   $("#method-pill").textContent = d.method + (d.calibration.startsWith("default") ? " · uncalibrated demo" : "");
 
   const warn = $("#quality-warn");
