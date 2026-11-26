@@ -119,3 +119,18 @@ data/      hemascan.db (created on first run)
 ## Next steps
 
 Offline mode (run the model in the browser), a colour-calibration card, a fingernail-bed photo as a second signal, SMS referrals, and a pilot with ASHA workers.
+## Project Development
+
+HemaScan was collaboratively developed for DSH Hacks V2 under the AI × Healthcare track.
+
+### Repository Maintainer
+
+**Sri Charan Reddy Nyayam**
+
+- GitHub: [sricharanreddynyayam-crypto](https://github.com/sricharanreddynyayam-crypto)
+
+This repository serves as my independent development and portfolio version of HemaScan, preserving the original project contributions.
+
+## Project Status
+
+Research and hackathon prototype. Further model calibration, clinical validation, and real-world testing are required before clinical use.
